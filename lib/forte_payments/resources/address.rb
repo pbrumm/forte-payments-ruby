@@ -14,7 +14,7 @@ module FortePayments
         get("/customers/#{customer_id}/addresses", options)
       end
 
-      def update_address(customer_id, options = {})
+      def update_address(customer_id, address_id, options = {})
         put("/customers/#{customer_id}/addresses/#{address_id}", options)
       end
 
