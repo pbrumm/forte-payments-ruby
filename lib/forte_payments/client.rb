@@ -18,7 +18,7 @@ module FortePayments
       @secure_key  = secure_key
       @account_id  = account_id
       @location_id = location_id
-      @base_url    = base_url || "https://sandbox.forte.net/api/v2"
+      @base_url    = base_url || "https://sandbox.forte.net"
     end
 
     def get(path, options={})
@@ -43,7 +43,7 @@ module FortePayments
     private
 
     def base_path
-      "/accounts/#{account_id}/locations/#{location_id}"
+      "/api/v2/accounts/#{account_id}/locations/#{location_id}"
     end
 
     def connection
