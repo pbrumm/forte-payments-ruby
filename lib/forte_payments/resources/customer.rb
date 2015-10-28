@@ -11,7 +11,7 @@ module FortePayments
       end
 
       def find_customer(customer_id)
-        get("/customers/#{customer_id}", options)
+        get("/customers/#{customer_id}")
       end
 
       def update_customer(customer_id, options = {})

@@ -13,12 +13,14 @@ module FortePayments
 
     attr_reader :api_key, :secure_key, :account_id, :location_id, :base_url
 
+    SANDBOX_BASE_URL = "https://sandbox.forte.net"
+    
     def initialize(api_key: api_key, secure_key: secure_key, account_id: account_id, location_id: location_id, base_url: nil)
       @api_key     = api_key
       @secure_key  = secure_key
       @account_id  = account_id
       @location_id = location_id
-      @base_url    = base_url || "https://sandbox.forte.net"
+      @base_url    = base_url || SANDBOX_BASE_URL
     end
 
     def get(path, options={})
@@ -43,7 +45,11 @@ module FortePayments
     private
 
     def base_path
-      "/api/v2/accounts/#{account_id}/locations/#{location_id}"
+      prepend = ""
+      if @base_url == SANDBOX_BASE_URL
+        prepend = "/api"
+      end
+      "#{prepend}/v2/accounts/#{account_id}/locations/#{location_id}"
     end
 
     def connection
